@@ -172,18 +172,15 @@ class StatTracker
     end
   end
 
-  ######Season Statistics######
+  #Season Statistics
 
-  def most_accurate_team
+  def most_accurate_team(season_id) #does not pass
     total_shots_in_a_season = {}
     total_goals_in_a_season = {}
     team_accuracy = {}
-
-    
     @game_teams.each do |game, season|
       total_shots_in_a_season[game.team_id] = total_shots_in_a_season.fetch(game.team_id, []) << game.shots
       total_goals_in_a_season[game.team_id] = total_goals_in_a_season.fetch(game.team_id, []) << game.goals
-      
     end
     team_accuracy.map do |team_id, accuracy_array|
       team_accuracy[team_id] = (total_goals_in_a_season.sum.to_f/total_shots_in_a_season.sum)
@@ -194,11 +191,10 @@ class StatTracker
     end
   end
 
-  def least_accurate_team
+  def least_accurate_team(season_id) #does not pass
     total_shots_in_a_season = {}
     total_goals_in_a_season = {}
     team_accuracy = {}
-
     @game_teams.each do |game, season|
       if season == season
         total_shots_in_a_season[game.team_id] = total_shots_in_a_season.fetch(game.team_id, []) << game.shots
@@ -214,9 +210,7 @@ class StatTracker
     end
   end
 
-    #Season Statistics
-
-  def winningest_coach(season_id)
+  def winningest_coach(season_id) #does not pass
     coach_wins = Hash.new(0)
     season_games = games.select { |game| game.season == season_id }
     season_games.each do |game|
@@ -254,9 +248,11 @@ class StatTracker
     most_tackles_hash = team_id_total_tackles_hash.max_by do |_, total_tackles|
       total_tackles
     end
+    target_team_name = []
     @teams.each do |team|
-      return team.team_name if team.team_id == most_tackles_hash.first
+      target_team_name << team.team_name if team.team_id == most_tackles_hash.first
     end
+    target_team_name.first
   end
 
   def fewest_tackles(season) #does not pass spec_harness
@@ -280,9 +276,11 @@ class StatTracker
     fewest_tackles_hash = team_id_total_tackles_hash.min_by do |_, total_tackles|
       total_tackles
     end
+    target_team_name = []
     @teams.each do |team|
-      return team.team_name if team.team_id == fewest_tackles_hash.first
+      target_team_name << team.team_name if team.team_id == fewest_tackles_hash.first
     end
+    target_team_name.first
   end
 
 end
