@@ -3,8 +3,8 @@ Starter repository for the [Turing School](https://turing.io/) Futbol project.
 
 # CONTRIBUTORS
 Karl Fallenius
-  - insert github profile
-  - insert LinkedIn profile
+  - [Github profile](https://github.com/SmilodonP)
+  - [LinkedIn profile](https://www.linkedin.com/in/karlfallenius/)
     
 James Cochran
   - [GitHub Profile](https://github.com/James-Cochran)
